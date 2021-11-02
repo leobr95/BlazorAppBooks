@@ -1,0 +1,28 @@
+﻿@page "/eliminarlibro/{BookId:int}"
+@inherits ListaBooksBase
+
+@inject NavigationManager NavigationManager
+@using Models
+
+<h3>Eliminar Libro</h3>
+
+<p>Deseas Eliminar el libro con id @BookId ?</p>
+
+<div>
+    <button @onclick="Cancel">Cancelar</button>
+    <button @onclick="Delete">Eliminar</button>
+</div>
+@code {
+    [Parameter]
+    public int BookId { get; set; }
+
+    private async Task Delete()
+    {
+        await ServicioBooks.DeleteBooks(BookId);
+        NavigationManager.NavigateTo("/vistalibro");
+    }
+        private void Cancel()
+    {
+        NavigationManager.NavigateTo("/vistalibro");
+    }
+}

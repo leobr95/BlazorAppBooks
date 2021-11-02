@@ -1,0 +1,63 @@
+﻿@page "/bookupdateform/{BookId:int}"
+@inherits ListaBooksBase
+@inject NavigationManager NavigationManager
+
+@using Models
+<h3>Editar Libro</h3>
+
+<EditForm Model="oBook">
+    <div class="container-fluid">
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Titulo</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oBook.Titulo"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Ciudad de Origen</label>
+            <div class="col-sm-9">
+                <InputNumber class="form-control" @bind-Value="@oBook.Año"></InputNumber>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Número de Paginas</label>
+            <div class="col-sm-9">
+                <InputNumber class="form-control" @bind-Value="@oBook.NumeroPagina"></InputNumber>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Genero</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oBook.Genero"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Id Autor</label>
+            <div class="col-sm-9">
+                <InputNumber class="form-control" @bind-Value="@oBook.AutorId"></InputNumber>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-sm-12">
+                <button class="btn btn-primary" @onclick="Save">Guardar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int BookId { get; set; }
+    Book oBook = new Book();
+
+    private async Task Save()
+    {
+        await ServicioBooks.PutBooks(BookId, oBook);
+        NavigationManager.NavigateTo("/vistalibro");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        oBook = await ServicioBooks.GetBookItem(BookId);
+    }
+}

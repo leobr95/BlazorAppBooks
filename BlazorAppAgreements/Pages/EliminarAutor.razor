@@ -1,0 +1,28 @@
+﻿@page "/EliminarAutor/{AutorId:int}"
+@inherits ListaAutorsBase
+
+@inject NavigationManager NavigationManager
+@using Models
+
+<h3>Eliminar Autor</h3>
+
+<p>Deseas Eliminar el id @AutorId ?</p>
+
+<div>
+    <button @onclick="Cancel">Cancelar</button>
+    <button @onclick="Delete">Eliminar</button>
+</div>
+@code {
+    [Parameter]
+    public int AutorId { get; set; }
+
+    private async Task Delete()
+    {
+        await ServicioAutors.DeleteAutors(AutorId);
+        NavigationManager.NavigateTo("/vistaautor");
+    }
+        private void Cancel()
+    {
+        NavigationManager.NavigateTo("/vistaautor");
+    }
+}

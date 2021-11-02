@@ -1,0 +1,27 @@
+﻿@page "/vistanegocio"
+@inherits ListaNegociosBase
+    
+        <h3 class="oi oi-wrench">Autores</h3>
+
+    @if (Negocios == null)
+    {
+        <h1>Error</h1>
+    }
+    else
+    {
+        <div class="card-deck">
+            @foreach (var negocio in Negocios)
+            {
+                <div class="card m-4">
+                    <div class="card-header">
+                        <h3>El Máximo de libros configurados es:</h3>
+                        <h5>@negocio.MaximoLibro</h5>
+
+
+                    </div>
+                    <a href="/NegocioUpdateForm/@negocio.NegocioId">Editar</a>
+
+                </div>
+            }
+        </div>
+    }

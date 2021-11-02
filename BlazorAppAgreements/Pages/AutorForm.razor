@@ -1,0 +1,52 @@
+﻿@page "/AutorForm"
+@inherits ListaAutorsBase
+@inject NavigationManager NavigationManager
+
+@using Models
+<h3>Agregar Autor</h3>
+
+<EditForm Model="oAutor">
+    <div class="container-fluid">
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Nombre</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oAutor.Nombre"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Ciudad de Origen</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oAutor.Ciudad"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Fecha de Nacimiento</label>
+            <div class="col-sm-9">
+                <InputDate class="form-control" @bind-Value="@oAutor.FechaNacimiento"></InputDate>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Correo Electronico</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oAutor.CorreoElectronico"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-sm-12">
+                <button class="btn btn-primary" @onclick="Save">Guardar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    Autor oAutor = new Autor();
+    [Parameter]
+    public int AutorId { get; set; }
+
+    private async Task Save()
+    {
+        await ServicioAutors.PostAutors(oAutor);
+        NavigationManager.NavigateTo("/vistaautor");
+    }
+}

@@ -1,0 +1,39 @@
+﻿@page "/negocioupdateform/{NegocioId:int}"
+@inherits ListaNegociosBase
+@inject NavigationManager NavigationManager
+
+@using Models
+<h3>Editar Libro</h3>
+
+<EditForm Model="oNegocio">
+    <div class="container-fluid">
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Máximo de libros</label>
+            <div class="col-sm-9">
+                <InputNumber class="form-control" @bind-Value="@oNegocio.MaximoLibro"></InputNumber>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-sm-12">
+                <button class="btn btn-primary" @onclick="Save">Guardar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int NegocioId { get; set; }
+    Negocio oNegocio = new Negocio();
+
+    private async Task Save()
+    {
+        await ServicioNegocios.PutNegocios(NegocioId, oNegocio);
+        NavigationManager.NavigateTo("/vistanegocio");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        oNegocio = await ServicioNegocios.GetNegocioItem(NegocioId);
+    }
+}
