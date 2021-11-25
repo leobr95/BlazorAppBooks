@@ -1,0 +1,39 @@
+﻿@page "/EditorialUpdateForm/{EditorialId:int}"
+@inherits ListaEditorialsBase
+@inject NavigationManager NavigationManager
+
+@using Models
+<h3>Editar Editorial</h3>
+
+<EditForm Model="oEditorial">
+    <div class="container-fluid">
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Nombre</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oEditorial.Nombre"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-sm-12">
+                <button class="btn btn-dark" @onclick="Save">Guardar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int EditorialId { get; set; }
+    Editorial oEditorial = new Editorial();
+
+    private async Task Save()
+    {
+        await ServicioEditorials.PutEditorials(EditorialId, oEditorial);
+        NavigationManager.NavigateTo("/vistaeditorial");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+          oEditorial = await ServicioEditorials.GetEditorialItem(EditorialId);
+    }
+}

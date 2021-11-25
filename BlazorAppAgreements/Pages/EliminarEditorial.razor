@@ -1,0 +1,28 @@
+﻿@page "/EliminarEditorial/{EditorialId:int}"
+@inherits ListaEditorialsBase
+
+@inject NavigationManager NavigationManager
+@using Models
+
+<h3>Eliminar Editorial</h3>
+
+<p>Deseas Eliminar el id @EditorialId ?</p>
+
+<div>
+    <button @onclick="Cancel" class="btn btn-dark">Cancelar</button>
+    <button @onclick="Delete" class="btn btn-danger">Eliminar</button>
+</div>
+@code {
+    [Parameter]
+    public int EditorialId { get; set; }
+
+    private async Task Delete()
+    {
+        await ServicioEditorials.DeleteEditorials(EditorialId);
+        NavigationManager.NavigateTo("/vistaeditorial");
+    }
+        private void Cancel()
+    {
+        NavigationManager.NavigateTo("/vistaeditorial");
+    }
+}

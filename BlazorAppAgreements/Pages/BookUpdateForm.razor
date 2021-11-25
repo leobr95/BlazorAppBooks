@@ -14,32 +14,38 @@
             </div>
         </div>
         <div class="form-group row mb-1">
-            <label class="col-sm-3">Ciudad de Origen</label>
+            <label class="col-sm-3">Año de Publicación</label>
             <div class="col-sm-9">
-                <InputNumber class="form-control" @bind-Value="@oBook.Año"></InputNumber>
+                <InputNumber class="form-control" @bind-Value="@oBook.Fecha"></InputNumber>
             </div>
         </div>
         <div class="form-group row mb-1">
-            <label class="col-sm-3">Número de Paginas</label>
+            <label class="col-sm-3">Costo</label>
             <div class="col-sm-9">
-                <InputNumber class="form-control" @bind-Value="@oBook.NumeroPagina"></InputNumber>
+                <InputNumber class="form-control" @bind-Value="@oBook.Costo"></InputNumber>
             </div>
         </div>
         <div class="form-group row mb-1">
-            <label class="col-sm-3">Genero</label>
+            <label class="col-sm-3">Precio Sugerido</label>
             <div class="col-sm-9">
-                <InputText class="form-control" @bind-Value="@oBook.Genero"></InputText>
+                <InputNumber class="form-control" @bind-Value="@oBook.PrecioSugerido"></InputNumber>
             </div>
         </div>
         <div class="form-group row mb-1">
-            <label class="col-sm-3">Id Autor</label>
+            <label class="col-sm-3">Id Editorial</label>
             <div class="col-sm-9">
-                <InputNumber class="form-control" @bind-Value="@oBook.AutorId"></InputNumber>
+                <InputNumber class="form-control" @bind-Value="@oBook.EditorialId"></InputNumber>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label class="col-sm-3">Autor</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oBook.Autor"></InputText>
             </div>
         </div>
         <div class="form-group row mb-1">
             <div class="col-sm-12">
-                <button class="btn btn-primary" @onclick="Save">Guardar</button>
+                <button class="btn btn-dark" @onclick="Save">Guardar</button>
             </div>
         </div>
     </div>

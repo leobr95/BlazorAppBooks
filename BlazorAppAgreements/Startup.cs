@@ -33,11 +33,7 @@ namespace BlazorAppBooks
             {
                 cliente.BaseAddress = new Uri("http://localhost:5000");
             });
-            services.AddHttpClient<IServicioAutors, ServicioAutors>(cliente =>
-            {
-                cliente.BaseAddress = new Uri("http://localhost:5000");
-            });
-            services.AddHttpClient<IServicioNegocios, ServicioNegocios>(cliente =>
+            services.AddHttpClient<IServicioEditorials, ServicioEditorials>(cliente =>
             {
                 cliente.BaseAddress = new Uri("http://localhost:5000");
             });

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BlazorAppBooks.Pages
 {
-    public class ListaAutorsBase : ComponentBase
+    public class ListaEditorialsBase : ComponentBase
     {
         [Inject]
-        public IServicioAutors ServicioAutors { get; set; }
-        public IEnumerable<Autor> Autors{ get; set;}
+        public IServicioEditorials ServicioEditorials { get; set; }
+        public IEnumerable<Editorial> Editorials{ get; set;}
         [Inject]
         public IServicioBooks ServicioBooks { get; set; }
         public IEnumerable<Book> Books { get; set; }
@@ -22,7 +22,7 @@ namespace BlazorAppBooks.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            Autors = (await ServicioAutors.GetAutors()).ToList();
+            Editorials = (await ServicioEditorials.GetEditorials()).ToList();
         }
 
 

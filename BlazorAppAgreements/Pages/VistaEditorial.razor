@@ -1,0 +1,43 @@
+﻿@page "/vistaeditorial"
+@inherits ListaEditorialsBase
+    <div class="row">
+        <div class="col-12 text-left">
+            <h1>Editoriales</h1>
+            
+        </div>
+            
+
+    </div>
+    @if (Editorials == null)
+    {
+        <h1>Error</h1>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12 text-left">
+                <a href="EditorialForm" class="btn btn-info" role="button">
+                    Nuevo
+                </a>
+            </div>
+        </div>
+        <div class="card-deck">
+            @foreach (var editorials in Editorials)
+            {
+                <div class="card m-4">
+                    <div class="card-header">
+                        <h1 class="oi oi-person"></h1>
+                        <h5>Codigo @editorials.EditorialId</h5>
+                        <h2>Editorial @editorials.Nombre</h2>
+                    </div>
+                    <div>
+                        <div class="col-12 text-right">
+                            <a href="/editorialupdateform/@editorials.EditorialId" class="btn btn-dark" role="button">Editar</a>
+                            <a href="/eliminareditorial/@editorials.EditorialId" class="btn btn-dark" role="button">Eliminar</a>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    }
